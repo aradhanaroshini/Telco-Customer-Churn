@@ -32,7 +32,7 @@ model = pkl.load(open("model.pkl","rb"))
 
 import numpy as np
 import pandas as pd
-nput_df = pd.DataFrame([[gender, snrciti, partner, dependents, tenure, phone, line,
+input_df = pd.DataFrame([[gender, snrciti, partner, dependents, tenure, phone, line,
                           netservice, security, backup, protection, support, 
                          TV, movies, contract, bill, payment, charges, total]], 
                          columns=["gender", "SeniorCitizen", "Partner", "Dependents", 
@@ -43,10 +43,16 @@ tenure = float(tenure)
 charges = float(charges)
 total = float(total)
 snrciti = int(snrciti)
-st.write(input_df.dtypes)
+
+
 if (submit):
     
 
     prediction=model.predict(input_df)
-    st.success(prediction[0])
+    st.text("Churn prediction is:")
+    if prediction[0]==1:
+        st.success("Yes")
+    else:
+        st.error("No")
+    
 

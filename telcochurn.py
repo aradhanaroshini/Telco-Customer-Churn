@@ -30,7 +30,8 @@ df.shape
 df.columns
 
 df.isnull().sum()
-
+df['TotalCharges'] = pd.to_numeric(df['TotalCharges'], errors='coerce')
+df.dropna(subset=['TotalCharges'], inplace=True)
 numerical_data=df.select_dtypes(include='number')
 numerical_data.shape
 
